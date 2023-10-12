@@ -250,7 +250,6 @@ public class userDAO
     	
     	resultSet.last();
     	//hello
-    	//hewwoowowowow
     	int setSize = resultSet.getRow();
     	resultSet.beforeFirst();
     	
