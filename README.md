@@ -8,3 +8,10 @@ Everything from the database excercises is used for this project.
 6. Once you have it in the folder it should show in eclipse and you can open the web content section so that you can see all the .jsp files.
 7. Then you can right click the dile you want to and a "run on server" button should appear. CLICK IT.
 8. Then you can use the website. 
+
+
+
+
+Project Part 1: Combined hours of work is 6 hours
+Jacob- I made the ER diagram and also the create table statements and helped with coding as well
+Ambyr- Helped with github and coding project part 1
