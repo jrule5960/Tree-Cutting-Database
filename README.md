@@ -13,5 +13,7 @@ Everything from the database excercises is used for this project.
 
 
 Project Part 1: Combined hours of work is 6 hours
+
 Jacob- I made the ER diagram and also the create table statements and helped with coding as well
+
 Ambyr- Helped with github and coding project part 1
