@@ -4,13 +4,15 @@
 <html>
 <head><title>Registration</title></head>
 <body>
+<head>Registration</head>
+
 	<div align="center">
 		<p> ${errorOne } </p>
 		<p> ${errorTwo } </p>
 		<form action="register">
 			<table border="1" cellpadding="5">
 				<tr>
-					<th>Username: </th>
+					<th>Username (EMAIL): </th>
 					<td align="center" colspan="3">
 						<input type="text" name="email" size="45"  value="example@gmail.com" onfocus="this.value=''">
 					</td>
@@ -34,6 +36,44 @@
 					</td>
 	
 				</tr>
+				
+				<tr>
+					<th>Adress Street Num: </th>
+					<td align="center" colspan="3">
+						<input type="text" name="adress_street_num" size="45" value="12345" onfocus="this.value=''">
+					</td>
+	
+				</tr>
+				<tr>
+					<th>Adress Street: </th>
+					<td align="center" colspan="3">
+						<input type="text" name="adress_street" size="45" value="Banker St." onfocus="this.value=''">
+					</td>
+	
+				</tr>
+				
+				<tr>
+					<th>Adress City: </th>
+					<td align="center" colspan="3">
+						<input type="text" name="adress_city" size="45" value="Novi" onfocus="this.value=''">
+					</td>
+	
+				</tr>
+				<tr>
+					<th>Adress State: </th>
+					<td align="center" colspan="3">
+						<input type="text" name="adress_state" size="45" value="MI" onfocus="this.value=''">
+					</td>
+	
+				</tr>
+				<tr>
+					<th>Adress Zipcode: </th>
+					<td align="center" colspan="3">
+						<input type="text" name="adress_zip_code" size="45" value="48101" onfocus="this.value=''">
+					</td>
+	
+				</tr>
+				
 				<tr>
 					<th>Password: </th>
 					<td align="center" colspan="3"> 

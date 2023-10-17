@@ -111,7 +111,7 @@ public class user
 	        this.adress_zip_code = adress_zip_code;
 	    }
 	    
-	    public int getCash_bal() {
+	  public int getCash_bal() {
 	    	return cash_bal;
 	    }
 	    public void setCash_bal(int cash_bal) {
@@ -123,5 +123,6 @@ public class user
 	    }
 	    public void setPPS_bal(int PPS_bal) {
 	    	this.PPS_bal = PPS_bal;
-	    }
+	    }  
+	    
 	}

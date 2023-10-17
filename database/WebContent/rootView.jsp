@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Root page</title>
+<title>Admin Root Page</title>
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 	</form>
 	<a href="login.jsp"target ="_self" > logout</a><br><br> 
 
-<h1>List all users</h1>
+<h1>List All Users</h1>
     <div align="center">
         <table border="1" cellpadding="6">
             <caption><h2>List of Users</h2></caption>
@@ -28,8 +28,8 @@
                 <th>Address</th>
                 <th>Password</th>
                 <th>Birthday</th>
-                <th>cash_bal($)</th>
-                <th>PPS_bal</th>
+                <th>cash_balaa  Phone Number($)</th>
+                <th>PPS_bal Credit Card</th>
             </tr>
             <c:forEach var="users" items="${listUser}">
                 <tr style="text-align:center">

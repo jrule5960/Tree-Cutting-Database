@@ -94,23 +94,39 @@ public class ControlServlet extends HttpServlet {
 	    	request.getRequestDispatcher("rootView.jsp").forward(request, response);
 	    }
 	    
+	    private void davidPage(HttpServletRequest request, HttpServletResponse response, String view) throws ServletException, IOException, SQLException{
+	    	System.out.println("david view");
+			request.setAttribute("listUser", userDAO.listAllUsers());
+	    	request.getRequestDispatcher("DavidSmithView.jsp").forward(request, response);
+	    }
+	    
 	    
 	    protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 	    	 String email = request.getParameter("email");
 	    	 String password = request.getParameter("password");
 	    	 
-	    	 if (email.equals("root") && password.equals("pass1234")) {
+	    	 if (email.equals("root") && password.equals("pass1234")) 
+	    	 {
 				 System.out.println("Login Successful! Redirecting to root");
 				 session = request.getSession();
 				 session.setAttribute("username", email);
 				 rootPage(request, response, "");
 	    	 }
+	    	 
+	    	 else if (email.equals("DavidSmith@gmail.com") && password.equals("david1234")) 
+	    	 {
+				 System.out.println("Login Successful! Redirecting to David Smiths Page");
+				 session = request.getSession();
+				 session.setAttribute("username", email);
+				 davidPage(request, response, "");
+	    	 }
+	    	 
 	    	 else if(userDAO.isValid(email, password)) 
 	    	 {
 			 	 
 			 	 currentUser = email;
 				 System.out.println("Login Successful! Redirecting");
-				 request.getRequestDispatcher("activitypage.jsp").forward(request, response);
+				 request.getRequestDispatcher("ClientPage.jsp").forward(request, response);
 			 			 			 			 
 	    	 }
 	    	 else {
@@ -132,20 +148,27 @@ public class ControlServlet extends HttpServlet {
 	   	 	String adress_zip_code = request.getParameter("adress_zip_code"); 	   	 	
 	   	 	String confirm = request.getParameter("confirmation");
 	   	 	
-	   	 	if (password.equals(confirm)) {
-	   	 		if (!userDAO.checkEmail(email)) {
+	   	 	if (password.equals(confirm)) 
+	   	 	{
+	   	 		if (!userDAO.checkEmail(email)) 
+	   	 		{
 		   	 		System.out.println("Registration Successful! Added to database");
 		            user users = new user(email,firstName, lastName, password, birthday, adress_street_num,  adress_street,  adress_city,  adress_state,  adress_zip_code, 1000,0);
 		   	 		userDAO.insert(users);
 		   	 		response.sendRedirect("login.jsp");
 	   	 		}
-		   	 	else {
+	   	 		
+		   	 	else 
+		   	 	{
 		   	 		System.out.println("Username taken, please enter new username");
 		    		 request.setAttribute("errorOne","Registration failed: Username taken, please enter a new username.");
 		    		 request.getRequestDispatcher("register.jsp").forward(request, response);
 		   	 	}
 	   	 	}
-	   	 	else {
+	   	 	
+	   	 	
+	   	 	else 
+	   	 	{
 	   	 		System.out.println("Password and Password Confirmation do not match");
 	   		 request.setAttribute("errorTwo","Registration failed: Password and Password Confirmation do not match.");
 	   		 request.getRequestDispatcher("register.jsp").forward(request, response);
@@ -155,13 +178,6 @@ public class ControlServlet extends HttpServlet {
 	    	currentUser = "";
         		response.sendRedirect("login.jsp");
         	}
-	
-	    
-
-	     
-        
-	    
-	    
 	    
 	    
 	    

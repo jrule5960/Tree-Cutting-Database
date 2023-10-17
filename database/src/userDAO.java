@@ -101,7 +101,7 @@ public class userDAO
             int PPS_bal = resultSet.getInt("PPS_bal");
 
              
-            user users = new user(email,firstName, lastName, password, birthday, adress_street_num,  adress_street,  adress_city,  adress_state,  adress_zip_code, cash_bal,PPS_bal);
+            user users = new user(email,firstName, lastName, password, birthday, adress_street_num,  adress_street,  adress_city,  adress_state,  adress_zip_code, cash_bal, PPS_bal);
             listUser.add(users);
         }        
         resultSet.close();
@@ -249,8 +249,7 @@ public class userDAO
     	ResultSet resultSet = statement.executeQuery(sql);
     	
     	resultSet.last();
-    	//hello
-    	//hewwoowowowow
+  
     	int setSize = resultSet.getRow();
     	resultSet.beforeFirst();
     	
@@ -269,6 +268,59 @@ public class userDAO
     	connect_func();
         statement =  (Statement) connect.createStatement();
         
+        
+     // Create the Client table
+        String createClientTable = "CREATE TABLE Client ("
+                + "ClientID INT PRIMARY KEY, "
+                + "FirstName VARCHAR(255), "
+                + "LastName VARCHAR(255), "
+                + "Address VARCHAR(255), "
+                + "CreditCardInfo VARCHAR(255), "
+                + "PhoneNumber VARCHAR(20), "
+                + "Email VARCHAR(255)"
+                + ");";
+
+        // Create the TreeRequest table
+        String createTreeRequestTable = "CREATE TABLE TreeRequest ("
+                + "RequestID INT PRIMARY KEY, "
+                + "TreeSize DECIMAL(10, 2), "
+                + "TreeHeight DECIMAL(10, 2), "
+                + "Location VARCHAR(255), "
+                + "NearHouse BOOLEAN, "
+                + "Note TEXT, "
+                + "Status VARCHAR(50)"
+                + ");";
+
+        // Create the Quote table
+        String createQuoteTable = "CREATE TABLE Quote ("
+                + "QuoteID INT PRIMARY KEY, "
+                + "InitialPrice DECIMAL(10, 2), "
+                + "TimeWindowFrom DATE, "
+                + "TimeWindowTo DATE, "
+                + "Note TEXT, "
+                + "Status VARCHAR(50)"
+                + ");";
+
+        // Create the Order of Work table
+        String createOrderOfWorkTable = "CREATE TABLE OrderOfWork ("
+                + "OrderID INT PRIMARY KEY, "
+                + "RequestID INT, "
+                + "QuoteID INT, "
+                + "Status VARCHAR(50), "
+                + "FOREIGN KEY (RequestID) REFERENCES TreeRequest(RequestID), "
+                + "FOREIGN KEY (QuoteID) REFERENCES Quote(QuoteID)"
+                + ");";
+
+        // Create the Bill table
+        String createBillTable = "CREATE TABLE Bill ("
+                + "BillID INT PRIMARY KEY, "
+                + "OrderID INT, "
+                + "Amount DECIMAL(10, 2), "
+                + "Note TEXT, "
+                + "Status VARCHAR(50), "
+                + "FOREIGN KEY (OrderID) REFERENCES OrderOfWork(OrderID)"
+                + ");";
+     
         String[] INITIAL = {"drop database if exists testdb; ",
 					        "create database testdb; ",
 					        "use testdb; ",
@@ -288,6 +340,10 @@ public class userDAO
 					            "PPS_bal DECIMAL(13,2) DEFAULT 0,"+
 					            "PRIMARY KEY (email) "+"); ")
         					};
+        
+        
+        
+        
         String[] TUPLES = {("insert into User(email, firstName, lastName, password, birthday, adress_street_num, adress_street, adress_city, adress_state, adress_zip_code, cash_bal, PPS_bal)"+
         			"values ('susie@gmail.com', 'Susie ', 'Guzman', 'susie1234', '2000-06-27', '1234', 'whatever street', 'detroit', 'MI', '48202','1000', '0'),"+
 			    		 	"('don@gmail.com', 'Don', 'Cummings','don123', '1969-03-20', '1000', 'hi street', 'mama', 'MO', '12345','1000', '0'),"+
@@ -299,6 +355,9 @@ public class userDAO
 			    			"('angelo@gmail.com', 'Angelo', 'Francis','angelo1234', '2021-06-14', '4680', 'egypt street', 'lolas', 'DT', '13579','1000', '0'),"+
 			    			"('rudy@gmail.com', 'Rudy', 'Smith','rudy1234', '1706-06-05', '1234', 'sign street', 'samo ne tu','MH', '09876','1000', '0'),"+
 			    			"('jeannette@gmail.com', 'Jeannette ', 'Stone','jeannette1234', '2001-04-24', '0981', 'snoop street', 'kojik', 'HW', '87654','1000', '0'),"+
+			    		 	
+			    			"('DavidSmith@gmail.com', 'David', 'Smith','david1234', '1969-03-20', '1000', 'hello street', 'taylor', 'MI', '48101','1000', '0'),"+
+
 			    			"('root', 'default', 'default','pass1234', '0000-00-00', '0000', 'Default', 'Default', '0', '00000','1000','1000000000');")
 			    			};
         
@@ -310,13 +369,7 @@ public class userDAO
         disconnect();
     }
     
-    
-   
-    
-    
-    
-    
-    
+  
 	
 	
 
