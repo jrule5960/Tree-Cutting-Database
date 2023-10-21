@@ -1,19 +1,57 @@
-How to install and use project
-Everything from the database excercises is used for this project. 
-1. You need to have eclipse for java and web developers.
-2. You need to download Apache tomcat server that is used to run on server in eclipse.
-3. You need to have your java home and catalina setup in your enviroment variables.
-4. Once everything is configured correctly then you can download this file.
-5. This file "database" needs to be in the eclipse workspcae folder so the server can be used correctly
-6. Once you have it in the folder it should show in eclipse and you can open the web content section so that you can see all the .jsp files.
-7. Then you can right click the dile you want to and a "run on server" button should appear. CLICK IT.
-8. Then you can use the website. 
+<p align="center">
+  <img src="your_project_logo.png" alt="Project Logo">
+</p>
+Project "Everything"
+A collaborative project by Jacob and Ambyr
 
+Table of Contents
+About the Project
+Getting Started
+Project Parts and Contributors
+Usage
+Acknowledgments
+Contact Information
+About the Project
+"Everything" is a web project that integrates Eclipse, Apache Tomcat, and a database for a comprehensive development experience.
 
+Getting Started
+Prerequisites
+Before using this project, make sure you have the following software installed:
 
+Eclipse for Java and Web Developers: Download Eclipse IDE for Java and Web Developers from the official Eclipse website.
 
-Project Part 1: Combined hours of work is 6 hours
+Apache Tomcat Server: Get Apache Tomcat server to run your project in Eclipse. Download it from the Apache Tomcat website and follow the installation instructions.
 
-Jacob- Made the ER diagram and also the create table statements and helped with coding as well
+Java Home and Catalina Setup: Set up your environment variables:
 
-Ambyr- Helped with github and coding project part 1 also helped with making ER diagram
+JAVA_HOME: Point it to your Java installation.
+CATALINA_HOME: Set it to your Tomcat installation directory.
+Project Setup
+Place your project files, including the "database" file, in your Eclipse workspace folder. You can find your Eclipse workspace folder by navigating to File > Switch Workspace > Other... in Eclipse.
+
+Open Eclipse and ensure that your workspace is set to the one containing your project files.
+
+In Eclipse, locate your project, expand it, and you'll see a "Web Content" section where you can access all the .jsp files related to your project.
+
+Project Parts and Contributors
+Part 1: Combined Hours of Work - 6 hours
+Jacob:
+
+Created the ER diagram.
+Defined table structures.
+Provided coding assistance.
+Ambyr:
+
+Assisted with GitHub tasks.
+Contributed to coding in Project Part 1.
+Helped with the ER diagram.
+Usage
+In Eclipse, navigate to the .jsp file you want to run.
+Right-click on the file.
+Click "Run on Server." This deploys the file to the Apache Tomcat server and opens it in your web browser.
+Acknowledgments
+Give credit to any external resources or libraries used in the project.
+
+Contact Information
+Jacob - GitHub Profile
+Ambyr - GitHub Profile
