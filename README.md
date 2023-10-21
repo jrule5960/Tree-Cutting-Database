@@ -66,4 +66,4 @@ Give credit to any external resources or libraries used in the project.
 ## Contact Information
 
 - Jacob - [GitHub Profile](https://github.com/jrule5960)
-- Ambyr - [GitHub Profile](https://github.com/ambyr)
+- Ambyr - [GitHub Profile](https://github.com/AmbyrElan)
