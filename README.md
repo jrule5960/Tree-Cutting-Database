@@ -1,8 +1,5 @@
-<p align="center">
-  <img src="your_project_logo.png" alt="Project Logo">
-</p>
 
-# Project "Everything"
+# Project "Tree Cutting"
 
 A collaborative project by Jacob and Ambyr
 
