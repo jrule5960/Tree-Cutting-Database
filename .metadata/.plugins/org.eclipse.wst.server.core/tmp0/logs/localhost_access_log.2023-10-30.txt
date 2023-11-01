@@ -1,0 +1,17 @@
+127.0.0.1 - - [30/Oct/2023:14:56:56 -0400] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:14:56:59 -0400] "GET /database/DavidSmithView.jsp HTTP/1.1" 200 1469
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:14:56:59 -0400] "GET /favicon.ico HTTP/1.1" 404 762
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:14:57:25 -0400] "GET /database/ClientPage.jsp HTTP/1.1" 200 978
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:15:01:40 -0400] "GET /database/login.jsp HTTP/1.1" 200 738
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:15:01:40 -0400] "GET /favicon.ico HTTP/1.1" 404 762
+127.0.0.1 - - [30/Oct/2023:15:18:31 -0400] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:15:18:32 -0400] "GET /database/rootView.jsp HTTP/1.1" 200 803
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:15:18:32 -0400] "GET /favicon.ico HTTP/1.1" 404 762
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:15:20:26 -0400] "GET /database/DavidSmithView.jsp HTTP/1.1" 200 1469
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:15:20:26 -0400] "GET /favicon.ico HTTP/1.1" 404 762
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:15:20:46 -0400] "GET /database/ClientPage.jsp HTTP/1.1" 200 978
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:15:20:46 -0400] "GET /favicon.ico HTTP/1.1" 404 762
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:15:26:09 -0400] "GET /database/ClientPage.jsp HTTP/1.1" 200 978
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:15:26:09 -0400] "GET /favicon.ico HTTP/1.1" 404 762
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:15:26:22 -0400] "GET /database/DavidSmithView.jsp HTTP/1.1" 200 1469
+0:0:0:0:0:0:0:1 - - [30/Oct/2023:15:26:22 -0400] "GET /favicon.ico HTTP/1.1" 404 762

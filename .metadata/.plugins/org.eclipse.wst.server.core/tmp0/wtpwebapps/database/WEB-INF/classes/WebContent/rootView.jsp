@@ -28,8 +28,8 @@
                 <th>Address</th>
                 <th>Password</th>
                 <th>Birthday</th>
-                <th>cash_balaa  Phone Number($)</th>
-                <th>PPS_bal Credit Card</th>
+				<th>Credit Card</th>
+                <th>Phone Number</th>
             </tr>
             <c:forEach var="users" items="${listUser}">
                 <tr style="text-align:center">

@@ -355,10 +355,8 @@ public class userDAO
 			    			"('angelo@gmail.com', 'Angelo', 'Francis','angelo1234', '2021-06-14', '4680', 'egypt street', 'lolas', 'DT', '13579','1000', '0'),"+
 			    			"('rudy@gmail.com', 'Rudy', 'Smith','rudy1234', '1706-06-05', '1234', 'sign street', 'samo ne tu','MH', '09876','1000', '0'),"+
 			    			"('jeannette@gmail.com', 'Jeannette ', 'Stone','jeannette1234', '2001-04-24', '0981', 'snoop street', 'kojik', 'HW', '87654','1000', '0'),"+
-			    		 	
 			    			"('DavidSmith@gmail.com', 'David', 'Smith','david1234', '1969-03-20', '1000', 'hello street', 'taylor', 'MI', '48101','1000', '0'),"+
-
-			    			"('root', 'default', 'default','pass1234', '0000-00-00', '0000', 'Default', 'Default', '0', '00000','1000','1000000000');")
+			    			"('root', 'default', 'default','pass1234', '2023-08-04', '0000', 'Default', 'Default', '0', '00000','1000','1000000000');")
 			    			};
         
         //for loop to put these in database
@@ -367,10 +365,5 @@ public class userDAO
         for (int i = 0; i < TUPLES.length; i++)	
         	statement.execute(TUPLES[i]);
         disconnect();
-    }
-    
-  
-	
-	
-
+    }	
 }
