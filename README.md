@@ -48,7 +48,7 @@ Before using this project, make sure you have the following software installed:
   - Defined table structures.
   - Provided coding assistance.
 
-- **Ambyr:**
+- **Karim:**
   - Assisted with GitHub tasks.
   - Contributed to coding in Project Part 1.
   - Helped with the ER diagram.
@@ -66,4 +66,4 @@ Give credit to any external resources or libraries used in the project.
 ## Contact Information
 
 - Jacob - [GitHub Profile](https://github.com/jrule5960)
-- Ambyr - [GitHub Profile](https://github.com/AmbyrElan)
+- Karim - [GitHub Profile](https://github.com/AmbyrElan)
