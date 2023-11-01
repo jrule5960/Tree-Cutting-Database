@@ -1,7 +1,7 @@
 
 # Project "Tree Cutting"
 
-A collaborative project by Jacob and Ambyr
+A collaborative project by Jacob and Karim
 
 ## Table of Contents
 
