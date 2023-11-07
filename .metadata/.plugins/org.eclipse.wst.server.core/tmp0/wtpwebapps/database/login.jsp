@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login to Database</title>
+<title>Login to Webpage</title>
 </head>
 <body>
  <center>	<h1> Welcome to Login page </h1> </center>
@@ -13,7 +13,7 @@
 		<form action="login" method="post">
 			<table border="1" cellpadding="5">
 				<tr>
-					<th>Username (EMAIL): </th>
+					<th>Username (email): </th>
 					<td>
 						<input type="text" name="email" size="45" autofocus>
 					</td>

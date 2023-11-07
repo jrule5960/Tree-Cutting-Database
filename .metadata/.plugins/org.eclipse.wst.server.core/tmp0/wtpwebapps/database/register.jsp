@@ -4,7 +4,9 @@
 <html>
 <head><title>Registration</title></head>
 <body>
-<head>Registration</head>
+    <center>
+<h1>Welcome to Registration Page!</h1>
+    </center>
 
 	<div align="center">
 		<p> ${errorOne } </p>
@@ -12,7 +14,7 @@
 		<form action="register">
 			<table border="1" cellpadding="5">
 				<tr>
-					<th>Username (EMAIL): </th>
+					<th>Username(email): </th>
 					<td align="center" colspan="3">
 						<input type="text" name="email" size="45"  value="example@gmail.com" onfocus="this.value=''">
 					</td>
@@ -20,62 +22,69 @@
 				<tr>
 					<th>First Name: </th>
 					<td align="center" colspan="3">
-						<input type="text" name="firstName" size="45" value="FirstName" onfocus="this.value=''">
+						<input type="text" name="firstName" size="45" value="First Name" onfocus="this.value=''">
 					</td>
 				</tr>
 				<tr>
 					<th>Last Name: </th>
 					<td align="center" colspan="3">
-						<input type="text" name="lastName" size="45" value="LastName" onfocus="this.value=''">
+						<input type="text" name="lastName" size="45" value="Last Name" onfocus="this.value=''">
 					</td>
-				</tr>
-				
-		
-				<tr>
-					<th>Birthday: </th>
-					<td align="center" colspan="3">
-						<input type="text" name="birthday" size="45" value="YYYY-MM-DD" onfocus="this.value=''">
-					</td>
-	
-				</tr>
-				
-				<tr>
-					<th>Adress Street Num: </th>
-					<td align="center" colspan="3">
-						<input type="text" name="adress_street_num" size="45" value="12345" onfocus="this.value=''">
-					</td>
-	
 				</tr>
 				<tr>
-					<th>Adress Street: </th>
-					<td align="center" colspan="3">
-						<input type="text" name="adress_street" size="45" value="Banker St." onfocus="this.value=''">
-					</td>
-	
-				</tr>
-				
-				<tr>
-					<th>Adress City: </th>
-					<td align="center" colspan="3">
-						<input type="text" name="adress_city" size="45" value="Novi" onfocus="this.value=''">
-					</td>
-	
+				    <th>Credit Card Number: </th>
+				    <td align="center" colspan="3">
+				        <input type="text" name="creditCardNumber" size="45" value="XXXX-XXXX-XXXX-XXXX" onfocus="this.value=''">
+				    </td>
 				</tr>
 				<tr>
-					<th>Adress State: </th>
-					<td align="center" colspan="3">
-						<input type="text" name="adress_state" size="45" value="MI" onfocus="this.value=''">
-					</td>
-	
+				    <th>Phone Number: </th>
+				    <td align="center" colspan="3">
+				        <input type="text" name="phoneNumber" size="45" value="XXX-XXX-XXXX" onfocus="this.value=''">
+				    </td>
 				</tr>
 				<tr>
-					<th>Adress Zipcode: </th>
-					<td align="center" colspan="3">
-						<input type="text" name="adress_zip_code" size="45" value="48101" onfocus="this.value=''">
-					</td>
-	
+				    <th>Role: </th>
+				    <td align="center" colspan="3">
+				        <select name="role">
+				            <option value="David Smith">Contractor (David Smith)</option>
+				            <option value="Client">Client</option>
+				            <option value="Admin Root">Root Admin</option>
+				        </select>
+				    </td>
 				</tr>
-				
+
+				<tr>
+				    <th>Street Number: </th>
+				    <td align="center" colspan="3">
+				        <input type="text" name="adress_street_num" size="45" value="Street Number" onfocus="this.value=''">
+				    </td>
+				</tr>
+				<tr>
+				    <th>Street: </th>
+				    <td align="center" colspan="3">
+				        <input type="text" name="adress_street" size="45" value="Street Name" onfocus="this.value=''">
+				    </td>
+				</tr>
+				<tr>
+				    <th>City: </th>
+				    <td align="center" colspan="3">
+				        <input type="text" name="adress_city" size="45" value="City" onfocus="this.value=''">
+				    </td>
+				</tr>
+				<tr>
+				    <th>State: </th>
+				    <td align="center" colspan="3">
+				        <input type="text" name="adress_state" size="2" value="MI" onfocus="this.value=''">
+				    </td>
+				</tr>
+				<tr>
+				    <th>Zip Code: </th>
+				    <td align="center" colspan="3">
+				        <input type="text" name="adress_zip_code" size="5" value="48101" onfocus="this.value=''">
+				    </td>
+				</tr>
+								
 				<tr>
 					<th>Password: </th>
 					<td align="center" colspan="3"> 

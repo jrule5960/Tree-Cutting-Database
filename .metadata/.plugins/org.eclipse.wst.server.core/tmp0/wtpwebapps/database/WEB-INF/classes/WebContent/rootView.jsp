@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Admin Root Page</title>
+<title>Root page</title>
 </head>
 <body>
 
@@ -17,30 +17,34 @@
 	</form>
 	<a href="login.jsp"target ="_self" > logout</a><br><br> 
 
-<h1>List All Users</h1>
+<h1>List all users</h1>
     <div align="center">
         <table border="1" cellpadding="6">
             <caption><h2>List of Users</h2></caption>
             <tr>
+            	<th>ID</th>
                 <th>Email</th>
                 <th>First name</th>
                 <th>Last name</th>
+                <th>Credit Card Number</th>
+                <th>Phone Number</th>
+                <th>Role</th>
                 <th>Address</th>
                 <th>Password</th>
-                <th>Birthday</th>
-				<th>Credit Card</th>
-                <th>Phone Number</th>
-            </tr>
+                <th>Trees</th>
+                
+            </tr> 
             <c:forEach var="users" items="${listUser}">
                 <tr style="text-align:center">
+                	<td><c:out value="${users.id}" /></td>
                     <td><c:out value="${users.email}" /></td>
                     <td><c:out value="${users.firstName}" /></td>
                     <td><c:out value="${users.lastName}" /></td>
-                    <td><c:out value= "${users.adress_street_num} ${users.adress_street} ${users.adress_city} ${users.adress_state} ${users.adress_zip_code}" /></td>
+                    <td><c:out value="${users.creditCardNumber}" /></td>
+			        <td><c:out value="${users.phoneNumber}" /></td>
+			        <td><c:out value="${users.role}" /></td>
+                    <td><c:out value="${users.adress_street_num} ${users.adress_street} ${users.adress_city} ${users.adress_state} ${users.adress_zip_code}" /></td>
                     <td><c:out value="${users.password}" /></td>
-                    <td><c:out value="${users.birthday}" /></td>
-                    <td><c:out value="${users.cash_bal}"/></td>
-                    <td><c:out value="${users.PPS_bal}" /></td>
             </c:forEach>
         </table>
 	</div>

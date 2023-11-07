@@ -1,18 +1,24 @@
 public class user 
 {
+		protected String id;
 		protected String password;
 	 	protected String email;
 	    protected String firstName;
 	    protected String lastName;
+	    protected String creditCardNumber;
+	    protected String phoneNumber;
+	    protected String role;
 	    protected String adress_street_num;
 	    protected String adress_street;
 	    protected String adress_city;
 	    protected String adress_state;
 	    protected String adress_zip_code;
-	    protected String birthday;
-	    protected int cash_bal;
-	    protected int PPS_bal;
-	 
+	    protected String tree_num;
+	    protected String tree_size;
+	    protected String tree_height;
+	    protected String tree_distance;
+	    protected String tree_location;
+
 	    //constructors
 	    public user() {
 	    }
@@ -22,29 +28,43 @@ public class user
 	        this.email = email;
 	    }
 	    
-	    public user(String email,String firstName, String lastName, String password,String birthday, String adress_street_num, String adress_street, String adress_city, String adress_state,String adress_zip_code, int cash_bal,  int PPS_bal) 
+	    public user(String id, String email,String firstName, String lastName, String password,String creditCardNumber,String phoneNumber, String role, String adress_street_num, String adress_street, String adress_city, String adress_state,String adress_zip_code, String tree_num, String tree_size, String tree_height, String tree_distance, String tree_location) 
 	    {
-	    	this(firstName,lastName,password,birthday, adress_street_num,  adress_street,  adress_city,  adress_state,  adress_zip_code,cash_bal,PPS_bal);
+	    	this(id, firstName,lastName,password,creditCardNumber,phoneNumber,role, adress_street_num,  adress_street,  adress_city,  adress_state,  adress_zip_code, tree_num, tree_size, tree_height, tree_distance, tree_location);
 	    	this.email = email;
 	    }
 	 
 	
-	    public user(String firstName, String lastName, String password,String birthday, String adress_street_num, String adress_street, String adress_city, String adress_state,String adress_zip_code, int cash_bal,  int PPS_bal) 
+	    public user(String id,String firstName, String lastName, String password,String creditCardNumber,String phoneNumber, String role, String adress_street_num, String adress_street, String adress_city, String adress_state,String adress_zip_code, String tree_num, String tree_size, String tree_height, String tree_distance, String tree_location) 
 	    {
+	    	this.id = id;
 	    	this.firstName = firstName;
 	    	this.lastName = lastName;
 	    	this.password = password;
-	        this.birthday = birthday;
+	    	this.creditCardNumber = creditCardNumber;
+	        this.phoneNumber = phoneNumber;
+	        this.role = role;
 	        this.adress_street_num = adress_street_num;
 	        this.adress_street = adress_street;
 	        this.adress_city= adress_city;
 	        this.adress_state = adress_state;
 	        this.adress_zip_code = adress_zip_code;
-	        this.cash_bal = cash_bal;
-	        this.PPS_bal = PPS_bal;
+	        this.tree_num = tree_num;
+	        this.tree_size = tree_size;
+	        this.tree_height = tree_height;
+	        this.tree_distance = tree_distance;
+	        this.tree_location = tree_location;
 	    }
 	    
-	   //getter and setter methods
+	   //getter and setter methods 
+	    
+	    public String getId() {
+	        return id;
+	    }
+	    public void setId(String id) {
+	        this.id = id;
+	    }
+	    
 	    public String getEmail() {
 	        return email;
 	    }
@@ -73,13 +93,24 @@ public class user
 	        this.password = password;
 	    }
 	  
-	    public String getBirthday() {
-	    	return birthday;
+	    public String getCreditCardNumber() {
+	    	return creditCardNumber;
 	    }
-	    public void setBirthday(String birthday) {
-	    	this.birthday = birthday;
+	    public void setCreditCardNumber(String creditCardNumber) {
+	    	this.creditCardNumber = creditCardNumber;
 	    }
-	    
+	    public String getPhoneNumber() {
+	    	return phoneNumber;
+	    }
+	    public void setPhoneNumber(String phoneNumber) {
+	    	this.phoneNumber = phoneNumber;
+	    }
+	    public String getRole() {
+	    	return role;
+	    }
+	    public void setRole(String role) {
+	    	this.role = role;
+	    }
 	    public String getAdress_street_num() {
 	        return adress_street_num;
 	    }
@@ -111,18 +142,35 @@ public class user
 	        this.adress_zip_code = adress_zip_code;
 	    }
 	    
-	  public int getCash_bal() {
-	    	return cash_bal;
+	    public String getTree_Num() {
+	        return tree_num;
 	    }
-	    public void setCash_bal(int cash_bal) {
-	    	this.cash_bal = cash_bal;
+	    public void setTree_Num(String tree_num) {
+	        this.tree_num = tree_num;
 	    }
-	    
-	    public int getPPS_bal() {
-	    	return PPS_bal;
+	    public String getTree_Size() {
+	        return tree_size;
 	    }
-	    public void setPPS_bal(int PPS_bal) {
-	    	this.PPS_bal = PPS_bal;
-	    }  
-	    
+	    public void setTree_Size(String tree_size) {
+	        this.tree_size = tree_size;
+	    }
+	    public String getTree_Height() {
+	        return tree_height;
+	    }
+	    public void setTree_Height(String tree_height) {
+	        this.tree_height = tree_height;
+	    }
+	    public String getTree_Distance() {
+	        return tree_distance;
+	    }
+	    public void setTree_Distance(String tree_distance) {
+	        this.tree_distance = tree_distance;
+	    }
+	    public String getTree_Location() {
+	        return tree_location;
+	    }
+	    public void setTree_Location(String tree_location) {
+	        this.tree_location = tree_location;
+	    }
+	   
 	}

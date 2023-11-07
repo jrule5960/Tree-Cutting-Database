@@ -7,31 +7,33 @@
 <head>
     <title>All User list</title>
 </head>
-<body>
+<body> 
    <div align="center">
         <table border="1" cellpadding="5">
             <caption><h2>List of People</h2></caption>
             <tr>
+            	<th>ID</th>
 				<th>Email</th>
                 <th>First name</th>
                 <th>Last name</th>
-                <th>Address</th>
+                <th>Adress</th>
                 <th>Password</th>
-                <th>Birthday</th>
-                <th>cash_bal($)</th>
-                <th>PPS_bal</th>
+                <th>credit Card Number</th>
+                <th>phone Number</th>
+                <th>Role</th>
 
             </tr>
             <c:forEach var="users" items="${listUser}">
                 <tr style="text-align:center">
+                	<td><c:out value="${users.id}" /></td>
                     <td><c:out value="${users.email}" /></td>
                     <td><c:out value="${users.firstName}" /></td>
                     <td><c:out value="${users.lastName}" /></td>
+                    <td><c:out value="${users.creditCardNumber}" /></td>
+			        <td><c:out value="${users.phoneNumber}" /></td>
+			        <td><c:out value="${users.role}" /></td>
                     <td><c:out value= "${users.adress_street_num} ${users.adress_street} ${users.adress_city} ${users.adress_state} ${users.adress_zip_code}" /></td>
                     <td><c:out value="${users.password}" /></td>
-                    <td><c:out value="${users.birthday}" /></td>
-                    <td><c:out value="${users.cash_bal}"/></td>
-                    <td><c:out value="${users.PPS_bal}" /></td>
                 </tr>
             </c:forEach>
         </table>
