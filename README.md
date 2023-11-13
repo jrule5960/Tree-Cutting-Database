@@ -53,7 +53,7 @@ Before using this project, make sure you have the following software installed:
   - Contributed to coding in 
   - Helped with the ER diagram.
  
-### Part 2: Combined Hours of Work -t12 hours
+### Part 2: Combined Hours of Work -12 hours
 
 - **Jacob:**
   - Created the web interfaces.
