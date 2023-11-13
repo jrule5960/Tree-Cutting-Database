@@ -50,8 +50,20 @@ Before using this project, make sure you have the following software installed:
 
 - **Karim:**
   - Assisted with GitHub tasks.
-  - Contributed to coding in Project Part 1.
+  - Contributed to coding in 
   - Helped with the ER diagram.
+ 
+### Part 2: Combined Hours of Work -t12 hours
+
+- **Jacob:**
+  - Created the web interfaces.
+  - Fixed registartion so it has all correct prompts for project. 
+  - Provided coding assistance.
+
+- **Karim:**
+  - Did a lot of the backend coding with the tables so that everything was connected.
+  - Styling the website
+  - Coming up with the classes for the tables. 
 
 ## Usage
 
@@ -66,4 +78,4 @@ Give credit to any external resources or libraries used in the project.
 ## Contact Information
 
 - Jacob - [GitHub Profile](https://github.com/jrule5960)
-- Karim - [GitHub Profile](https://github.com/AmbyrElan)
+- Karim - [GitHub Profile]
