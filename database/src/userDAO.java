@@ -81,43 +81,35 @@ public class userDAO
     
     public List<user> listAllUsers() throws SQLException {
         List<user> listUser = new ArrayList<user>();        
-        String sql = "SELECT * FROM User ORDER BY id";      
+        String sql = "SELECT * FROM User";      
         connect_func();      
         statement = (Statement) connect.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
          
         while (resultSet.next()) {
-        	String id = resultSet.getString("id");
+        	String role = resultSet.getString("role");
             String email = resultSet.getString("email");
             String firstName = resultSet.getString("firstName");
             String lastName = resultSet.getString("lastName");
-            String password = resultSet.getString("password");
-            String creditCardNumber = resultSet.getString("creditCardNumber");
-            String phoneNumber = resultSet.getString("phoneNumber");
-            String role = resultSet.getString("role");
             String adress_street_num = resultSet.getString("adress_street_num"); 
             String adress_street = resultSet.getString("adress_street"); 
             String adress_city = resultSet.getString("adress_city"); 
             String adress_state = resultSet.getString("adress_state"); 
-            String adress_zip_code = resultSet.getString("adress_zip_code");
-            String tree_num = resultSet.getString("tree_num");
-            String tree_size = resultSet.getString("tree_size");
-            String tree_height = resultSet.getString("tree_height");
-            String tree_distance = resultSet.getString("tree_distance");
-            String tree_location = resultSet.getString("tree_location");
-
+            String adress_zip_code = resultSet.getString("adress_zip_code"); 
+            String creditCard = resultSet.getString("creditCard");
+            String phoneNumber = resultSet.getString("phoneNumber");
+            String password = resultSet.getString("password");
 
              
-            user users = new user(id, email,firstName, lastName, password, creditCardNumber,phoneNumber,role, adress_street_num,  adress_street,  adress_city,  adress_state,  adress_zip_code, tree_num, tree_size, tree_height, tree_distance, tree_location);
+            user users = new user(role, email,firstName, lastName, adress_street_num,  adress_street,  adress_city,  adress_state,  adress_zip_code, creditCard, phoneNumber, password);
             listUser.add(users);
         }        
         resultSet.close();
         disconnect();        
         return listUser;
     }
-
-
-	protected void disconnect() throws SQLException {
+    
+    protected void disconnect() throws SQLException {
         if (connect != null && !connect.isClosed()) {
         	connect.close();
         }
@@ -125,26 +117,21 @@ public class userDAO
     
     public void insert(user users) throws SQLException {
     	connect_func("root","pass1234");         
-		String sql = "insert into User(email, firstName, lastName, password, creditCardNumber, phoneNumber, role,adress_street_num, adress_street,adress_city,adress_state,adress_zip_code,tree_num,tree_size_tree_height,tree_distance,tree_location) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,? ,? ,? ,? ,? ,?)";
+		String sql = "insert into User(role,email,firstName,lastName,adress_street_num,adress_street,adress_city,adress_state,adress_zip_code,creditCard,phoneNumber,password) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,?)";
 		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+			preparedStatement.setString(1, users.getRole());
 			preparedStatement.setString(2, users.getEmail());
 			preparedStatement.setString(3, users.getFirstName());
 			preparedStatement.setString(4, users.getLastName());
-			preparedStatement.setString(5, users.getPassword());
-			preparedStatement.setString(6, users.getCreditCardNumber());
-			preparedStatement.setString(7, users.getPhoneNumber());
-			preparedStatement.setString(8, users.getRole());
-			preparedStatement.setString(9, users.getAdress_street_num());		
-			preparedStatement.setString(10, users.getAdress_street());		
-			preparedStatement.setString(11, users.getAdress_city());		
-			preparedStatement.setString(12, users.getAdress_state());		
-			preparedStatement.setString(13, users.getAdress_zip_code());	
-			preparedStatement.setString(14, users.getTree_Num());
-			preparedStatement.setString(15, users.getTree_Size());
-			preparedStatement.setString(16, users.getTree_Height());	
-			preparedStatement.setString(17, users.getTree_Distance());
-			preparedStatement.setString(18, users.getTree_Location());	
-	
+			preparedStatement.setString(5, users.getAdress_street_num());		
+			preparedStatement.setString(6, users.getAdress_street());		
+			preparedStatement.setString(7, users.getAdress_city());		
+			preparedStatement.setString(8, users.getAdress_state());		
+			preparedStatement.setString(9, users.getAdress_zip_code());		
+			preparedStatement.setString(10, users.getCreditCard());		
+			preparedStatement.setString(11, users.getPhoneNumber());	
+			preparedStatement.setString(12, users.getPassword());
+
 		preparedStatement.executeUpdate();
         preparedStatement.close();
     }
@@ -154,7 +141,7 @@ public class userDAO
         connect_func();
          
         preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
-        preparedStatement.setString(2, email);
+        preparedStatement.setString(1, email);
          
         boolean rowDeleted = preparedStatement.executeUpdate() > 0;
         preparedStatement.close();
@@ -162,28 +149,22 @@ public class userDAO
     }
      
     public boolean update(user users) throws SQLException {
-        String sql = "update User set firstName=?, lastName =?,password = ?, creditCardNumber=?, phoneNumber=?, role=?, adress_street_num =?, adress_street=?,adress_city=?,adress_state=?,adress_zip_code=?, tree_num=?, tree_size=?, tree_height=?, tree_distance=?, tree_location=?, where email = ?";
+        String sql = "update User set role=?, firstName=?, lastName =?,adress_street_num =?, adress_street=?,adress_city=?,adress_state=?,adress_zip_code=?, creditCard=?, phoneNumber =?, password=? where email = ?";
         connect_func();
         
-		preparedStatement.setString(2, users.getEmail());
+        preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+        preparedStatement.setString(1, users.getEmail());
+        preparedStatement.setString(2, users.getRole());
 		preparedStatement.setString(3, users.getFirstName());
 		preparedStatement.setString(4, users.getLastName());
-		preparedStatement.setString(5, users.getPassword());
-		preparedStatement.setString(6, users.getCreditCardNumber());
-		preparedStatement.setString(7, users.getPhoneNumber());
-		preparedStatement.setString(8, users.getRole());
-		preparedStatement.setString(9, users.getAdress_street_num());		
-		preparedStatement.setString(10, users.getAdress_street());		
-		preparedStatement.setString(11, users.getAdress_city());		
-		preparedStatement.setString(12, users.getAdress_state());		
-		preparedStatement.setString(13, users.getAdress_zip_code());	
-		preparedStatement.setString(14, users.getTree_Num());
-		preparedStatement.setString(15, users.getTree_Size());
-		preparedStatement.setString(16, users.getTree_Height());
-		preparedStatement.setString(17, users.getTree_Distance());
-		preparedStatement.setString(18, users.getTree_Location());
-		
-		
+		preparedStatement.setString(5, users.getAdress_street_num());		
+		preparedStatement.setString(6, users.getAdress_street());		
+		preparedStatement.setString(7, users.getAdress_city());		
+		preparedStatement.setString(8, users.getAdress_state());		
+		preparedStatement.setString(9, users.getAdress_zip_code());		
+		preparedStatement.setString(10, users.getCreditCard());		
+		preparedStatement.setString(11, users.getPhoneNumber());
+		preparedStatement.setString(12, users.getPassword());
          
         boolean rowUpdated = preparedStatement.executeUpdate() > 0;
         preparedStatement.close();
@@ -197,35 +178,268 @@ public class userDAO
         connect_func();
          
         preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
-        preparedStatement.setString(2, email);
+        preparedStatement.setString(1, email);
          
         ResultSet resultSet = preparedStatement.executeQuery();
          
         if (resultSet.next()) {
-        	String id = resultSet.getString("id");
+        	String role = resultSet.getString("role");
             String firstName = resultSet.getString("firstName");
             String lastName = resultSet.getString("lastName");
-            String password = resultSet.getString("password");
-            String creditCardNumber = resultSet.getString("creditCardNumber");
-            String phoneNumber = resultSet.getString("phoneNumber");
-            String role = resultSet.getString("role");
             String adress_street_num = resultSet.getString("adress_street_num"); 
             String adress_street = resultSet.getString("adress_street"); 
             String adress_city = resultSet.getString("adress_city"); 
             String adress_state = resultSet.getString("adress_state"); 
             String adress_zip_code = resultSet.getString("adress_zip_code"); 
-            String tree_num = resultSet.getString("tree_num");
-            String tree_size = resultSet.getString("tree_size");
-            String tree_height = resultSet.getString("tree_height");
-            String tree_distance = resultSet.getString("tree_distance");
-            String tree_location = resultSet.getString("tree_location");
-            user = new user(id, email, firstName, lastName, password, creditCardNumber, phoneNumber, role, adress_street_num,  adress_street,  adress_city,  adress_state,  adress_zip_code, tree_num, tree_size, tree_height, tree_distance, tree_location);
+            String creditCard = resultSet.getString("creditCard");
+            String phoneNumber = resultSet.getString("phoneNumber");
+            String password = resultSet.getString("password");
+            user = new user(role, email, firstName, lastName, adress_street_num,  adress_street,  adress_city,  adress_state,  adress_zip_code, creditCard, phoneNumber, password);
         }
-         
         resultSet.close();
-        statement.close();
          
         return user;
+    }
+    
+    public int submitRequest(quote quoteReq) throws SQLException {
+    	int quoteId;
+    	connect_func();         
+		String sql = "insert into Quote(clientEmail, status, current, note, time) values (?, ?, ?, ?, ?)";
+		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+			preparedStatement.setString(1, quoteReq.getClientEmail());
+			preparedStatement.setString(2, quoteReq.getStatus());
+			preparedStatement.setString(3, quoteReq.getCurrent());
+			preparedStatement.setString(4, quoteReq.getNote());
+			preparedStatement.setString(5, quoteReq.getTime());
+
+		preparedStatement.executeUpdate();
+        preparedStatement.close();
+        
+        sql = "SELECT quoteId FROM Quote WHERE clientEmail = ? and time = ?";
+    	connect_func();
+    	preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+        preparedStatement.setString(1, quoteReq.getClientEmail());
+        preparedStatement.setString(2, quoteReq.getTime());
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        quoteId = resultSet.getInt("quoteId");
+        resultSet.close();
+        
+        sql = "insert into QuoteHistory(email, status, note, time, quoteId) values (?, ?, ?, ?, ?)";
+		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+			preparedStatement.setString(1, quoteReq.getClientEmail());
+			preparedStatement.setString(2, quoteReq.getStatus());
+			preparedStatement.setString(3, quoteReq.getNote());
+			preparedStatement.setString(4, quoteReq.getTime());
+			preparedStatement.setInt(5, quoteId);
+
+		preparedStatement.executeUpdate();
+        preparedStatement.close();
+        
+        return quoteId;
+    }
+    
+    public quote getQuote(int quoteId) throws SQLException {
+    	quote quotes = null;
+        String sql = "SELECT * FROM Quote WHERE quoteId = ?";
+         
+        connect_func();
+         
+        preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+        preparedStatement.setInt(1, quoteId);
+         
+        ResultSet resultSet = preparedStatement.executeQuery();
+         
+        if (resultSet.next()) {
+        	String clientEmail = resultSet.getString("clientEmail");
+            Double price = resultSet.getDouble("price");
+            String timeFrame = resultSet.getString("timeFrame");
+            String note = resultSet.getString("note"); 
+            String status = resultSet.getString("status"); 
+            String current = resultSet.getString("current"); 
+            String time = resultSet.getString("time"); 
+
+            quotes = new quote( quoteId,  clientEmail,  price,  timeFrame,  note,  status,  current);
+        }
+        resultSet.close();
+         
+        return quotes;
+    }
+    
+    
+    public void denyQuote(quote quotes, String currentUser) throws SQLException {
+    	String sql = "update Quote set status=?, note=?, time=? where quoteId=?";
+        connect_func();
+        
+        preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+        preparedStatement.setString(1, "rejected");
+        preparedStatement.setString(2, "Rejected by " + currentUser);
+        preparedStatement.setString(3, quotes.getTime());
+        preparedStatement.setInt(4, quotes.getQuoteId());
+        preparedStatement.executeUpdate();
+        preparedStatement.close();    
+        
+        sql = "insert into QuoteHistory(email, status, price, timeFrame, note, time, quoteId) values (?, ?, ?, ?, ?, ?, ?)";
+		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+		preparedStatement.setString(1, currentUser);
+		preparedStatement.setString(2, "rejected");
+		preparedStatement.setDouble(3, quotes.getPrice());
+		preparedStatement.setString(4, quotes.getTimeFrame());
+		preparedStatement.setString(5, "Rejected by " + currentUser);
+		preparedStatement.setString(6, quotes.getTime());
+		preparedStatement.setInt(7, quotes.getQuoteId());
+
+		preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+    
+    public void acceptQuote(quote quotes, String currentUser) throws SQLException {
+    	String sql = "update Quote set status=?, note=?, time=? where quoteId=?";
+        connect_func();
+        
+        preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+        preparedStatement.setString(1, "accepted");
+        preparedStatement.setString(2, "accepted by " + currentUser);
+        preparedStatement.setString(3, quotes.getTime());
+        preparedStatement.setInt(4, quotes.getQuoteId());
+        preparedStatement.executeUpdate();
+        preparedStatement.close();    
+        
+        sql = "insert into QuoteHistory(email, status, price, timeFrame, note, time, quoteId) values (?, ?, ?, ?, ?, ?, ?)";
+		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+		preparedStatement.setString(1, currentUser);
+		preparedStatement.setString(2, "accepted");
+		preparedStatement.setDouble(3, quotes.getPrice());
+		preparedStatement.setString(4, quotes.getTimeFrame());
+		preparedStatement.setString(5, "accepted by " + currentUser);
+		preparedStatement.setString(6, quotes.getTime());
+		preparedStatement.setInt(7, quotes.getQuoteId());
+
+		preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+    
+    public void submitQuote(quote quotes, String currentUser) throws SQLException {
+    	String sql = "update Quote set status=?, price=?, timeFrame=?, note=?, time=?, current=? where quoteId=?";
+        connect_func();
+        preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+        preparedStatement.setString(1, "open");
+        preparedStatement.setDouble(2, quotes.getPrice());
+        preparedStatement.setString(3, quotes.getTimeFrame());
+        preparedStatement.setString(4, quotes.getNote());
+        preparedStatement.setString(5, quotes.getTime());
+        if (currentUser.equals("davidsmith@treecutters.com")) {
+        	preparedStatement.setString(6, quotes.getClientEmail());
+        }
+        else {
+        	preparedStatement.setString(6, "davidsmith@treecutters.com");
+        }
+        preparedStatement.setInt(7, quotes.getQuoteId());
+        preparedStatement.executeUpdate();
+        preparedStatement.close();    
+        
+        sql = "insert into QuoteHistory(email, status, price, timeFrame, note, time, quoteId) values (?, ?, ?, ?, ?, ?, ?)";
+		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+		preparedStatement.setString(1, currentUser);
+		preparedStatement.setString(2, "open");
+		preparedStatement.setDouble(3, quotes.getPrice());
+		preparedStatement.setString(4, quotes.getTimeFrame());
+		preparedStatement.setString(5, quotes.getNote());
+		preparedStatement.setString(6, quotes.getTime());
+		preparedStatement.setInt(7, quotes.getQuoteId());
+
+		preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+    
+    public List<tree> getTrees(int quoteId) throws SQLException {
+    	List<tree> listTrees = new ArrayList<tree>(); 
+    	
+    	String sql = "SELECT * FROM tree WHERE quoteId = ?";
+    	connect_func();
+    	preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+        preparedStatement.setInt(1, quoteId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        
+        while (resultSet.next()) {
+        	int treeId = resultSet.getInt("treeId");
+            Double size = resultSet.getDouble("size"); 
+            Double height = resultSet.getDouble("height");
+            Double distance = resultSet.getDouble("distance"); 
+             
+            tree trees = new tree(quoteId,  size,  height,  distance);
+            listTrees.add(trees);
+        }        
+        resultSet.close();
+        disconnect();  
+        
+    	return listTrees;
+    }
+    
+    public void addTree(tree trees) throws SQLException {
+    	connect_func();         
+		String sql = "insert into Tree(quoteId, size, height, distance) values (?, ?, ?, ?, ?, ?, ?)";
+		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+			preparedStatement.setInt(1, trees.getQuoteId());
+			preparedStatement.setDouble(5, trees.getSize());
+			preparedStatement.setDouble(6, trees.getHeight());
+			preparedStatement.setDouble(7, trees.getDistance());
+
+		preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+    
+    public List<quote> listQuotes(String email, String status) throws SQLException {
+    	List<quote> listQuote = new ArrayList<quote>();         
+    	
+    	if (email.equals("davidsmith@treecutters.com")) {
+    		String sql = "SELECT * FROM quote WHERE status = ?";
+	    	connect_func();
+	    	preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+	        preparedStatement.setString(1, status);
+	        ResultSet resultSet = preparedStatement.executeQuery();
+	        
+	        while (resultSet.next()) {
+	        	int quoteId = resultSet.getInt("quoteId");
+	            String clientEmail = resultSet.getString("clientEmail");
+	            Double price = resultSet.getDouble("price");
+	            String timeFrame = resultSet.getString("timeFrame");
+	            String note = resultSet.getString("note"); 
+	            String s = resultSet.getString("status"); 
+	            String current = resultSet.getString("current"); 
+	             
+	            quote quote = new quote(quoteId, clientEmail,price, timeFrame, note,  s,  current);
+	            listQuote.add(quote);
+	        }        
+	        resultSet.close();
+	        disconnect();  
+    	}
+    	
+    	else {
+	    	String sql = "SELECT * FROM quote WHERE clientEmail = ? and status = ?";
+	    	connect_func();
+	    	preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+	        preparedStatement.setString(1, email);
+	        preparedStatement.setString(2, status);
+	        ResultSet resultSet = preparedStatement.executeQuery();
+	        
+	        while (resultSet.next()) {
+	        	int quoteId = resultSet.getInt("quoteId");
+	            String clientEmail = resultSet.getString("clientEmail");
+	            Double price = resultSet.getDouble("price");
+	            String timeFrame = resultSet.getString("timeFrame");
+	            String note = resultSet.getString("note"); 
+	            String s = resultSet.getString("status"); 
+	            String current = resultSet.getString("current"); 
+	             
+	            quote quote = new quote(quoteId, clientEmail,price, timeFrame, note,  s,  current);
+	            listQuote.add(quote);
+	        }        
+	        resultSet.close();
+	        disconnect();  
+    	}
+        
+        return listQuote;
     }
     
     public boolean checkEmail(String email) throws SQLException {
@@ -268,7 +482,7 @@ public class userDAO
     
     public boolean isValid(String email, String password) throws SQLException
     {
-    	String sql = "SELECT * FROM User"; 
+    	String sql = "SELECT * FROM User";
     	connect_func();
     	statement = (Statement) connect.createStatement();
     	ResultSet resultSet = statement.executeQuery(sql);
@@ -293,107 +507,197 @@ public class userDAO
     	connect_func();
         statement =  (Statement) connect.createStatement();
         
-        
-        
-        // Create the Client table
-        String createClientTable = "CREATE TABLE Client ("
-                + "ClientID INT PRIMARY KEY, "
-                + "FirstName VARCHAR(255), "
-                + "LastName VARCHAR(255), "
-                + "Address VARCHAR(255), "
-                + "CreditCardInfo VARCHAR(255), "
-                + "PhoneNumber VARCHAR(20), "
-                + "Email VARCHAR(255)"
-                + ");";
-
-        // Create the TreeRequest table
-        String createTreeRequestTable = "CREATE TABLE TreeRequest ("
-                + "RequestID INT PRIMARY KEY, "
-                + "TreeSize DECIMAL(10, 2), "
-                + "TreeHeight DECIMAL(10, 2), "
-                + "Location VARCHAR(255), "
-                + "NearHouse BOOLEAN, "
-                + "Note TEXT, "
-                + "Status VARCHAR(50)"
-                + ");";
-
-        // Create the Quote table
-        String createQuoteTable = "CREATE TABLE Quote ("
-                + "QuoteID INT PRIMARY KEY, "
-                + "InitialPrice DECIMAL(10, 2), "
-                + "TimeWindowFrom DATE, "
-                + "TimeWindowTo DATE, "
-                + "Note TEXT, "
-                + "Status VARCHAR(50)"
-                + ");";
-
-        // Create the Order of Work table
-        String createOrderOfWorkTable = "CREATE TABLE OrderOfWork ("
-                + "OrderID INT PRIMARY KEY, "
-                + "RequestID INT, "
-                + "QuoteID INT, "
-                + "Status VARCHAR(50), "
-                + "FOREIGN KEY (RequestID) REFERENCES TreeRequest(RequestID), "
-                + "FOREIGN KEY (QuoteID) REFERENCES Quote(QuoteID)"
-                + ");";
-
-        // Create the Bill table
-        String createBillTable = "CREATE TABLE Bill ("
-                + "BillID INT PRIMARY KEY, "
-                + "OrderID INT, "
-                + "Amount DECIMAL(10, 2), "
-                + "Note TEXT, "
-                + "Status VARCHAR(50), "
-                + "FOREIGN KEY (OrderID) REFERENCES OrderOfWork(OrderID)"
-                + ");";
-        
         String[] INITIAL = {
+        					
         					"drop database if exists testdb; ",
 					        "create database testdb; ",
 					        "use testdb; ",
+
 					        "drop table if exists User; ",
+					        ("CREATE TABLE if not exists User( " +
+					        	"role VARCHAR(20) DEFAULT 'client', "+
+					        	"email VARCHAR(50) NOT NULL, "+
+					        	"firstName VARCHAR(50) NOT NULL, "+
+					        	"lastName VARCHAR(50) NOT NULL, "+
+					        	"adress_street_num VARCHAR(4), "+ 
+					            "adress_street VARCHAR(30), "+ 
+					            "adress_city VARCHAR(20), " + 
+					            "adress_state VARCHAR(2), "+ 
+					            "adress_zip_code VARCHAR(5), "+ 
+					            "creditCard VARCHAR(20), "+
+					            "phoneNumber VARCHAR(10), "+
+					            "password VARCHAR(50) NOT NULL, "+
+					            "CHECK (role in ('client', 'david', 'root')), "+
+					            "PRIMARY KEY(email) "+");"),
 					        
-					        ("CREATE TABLE if not exists User( " + 
-					        	"id INT AUTO_INCREMENT UNIQUE, " +
-					            "email VARCHAR(50) NOT NULL, " + 
-					            "firstName VARCHAR(10) NOT NULL, " +
-					            "lastName VARCHAR(10) NOT NULL, " +
-					            "password VARCHAR(20) NOT NULL, " +
-					            "creditCardNumber VARCHAR(25) NOT NULL, " +
-					            "phoneNumber VARCHAR(20) NOT NULL, " +
-					            "role VARCHAR(20) NOT NULL, " +
-					            "adress_street_num VARCHAR(4) , "+ 
-					            "adress_street VARCHAR(30) , "+ 
-					            "adress_city VARCHAR(20)," + 
-					            "adress_state VARCHAR(2),"+ 
-					            "adress_zip_code VARCHAR(5),"+ 
-					            "tree_num VARCHAR(3),"+
-					            "tree_size VARCHAR(3),"+
-					            "tree_height VARCHAR(3),"+
-					            "tree_distance VARCHAR(3),"+
-					            "tree_location VARCHAR(20),"+
-					            "PRIMARY KEY (email) "+"); "),
+					        "drop table if exists Quote; ",
+					        ("CREATE TABLE if not exists Quote( " +
+					        	"quoteId INTEGER NOT NULL AUTO_INCREMENT, "+
+					        	"clientEmail VARCHAR(50) NOT NULL, "+
+					        	"price DOUBLE, "+
+					        	"timeFrame VARCHAR(255), "+
+					        	"note VARCHAR(255), "+
+					        	"status VARCHAR(8) NOT NULL DEFAULT 'request', "+
+					        	"current VARCHAR(255) NOT NULL, "+
+					        	"time VARCHAR(255) NOT NULL, "+
+					        	"CHECK (status in ('request', 'open', 'accepted', 'rejected')), "+
+					        	"PRIMARY KEY(quoteId), "+
+					        	"FOREIGN KEY (current) REFERENCES User(email), "+
+					        	"FOREIGN KEY (clientEmail) REFERENCES User(email) "+");"),
+					        
+					        "drop table if exists QuoteHistory; ",
+					        ("CREATE TABLE if not exists QuoteHistory( " +
+					        	"time VARCHAR(255) NOT NULL, "+
+					        	"quoteId INTEGER NOT NULL, "+
+					        	"email VARCHAR(50) NOT NULL, "+
+					        	"price DOUBLE, "+
+					        	"timeFrame VARCHAR(255), "+
+					        	"note VARCHAR(255), "+
+					        	"status VARCHAR(8) NOT NULL DEFAULT 'open', "+
+					        	"CHECK (status in ('request', 'open', 'accepted', 'rejected')), "+
+					        	"PRIMARY KEY(time, quoteId), "+
+					        	"FOREIGN KEY (quoteId) REFERENCES Quote(quoteId), "+
+					        	"FOREIGN KEY (email) REFERENCES User(email) "+");"),
+					        
+					        "drop table if exists Bill; ",
+					        ("CREATE TABLE if not exists Bill( " +
+					        	"billId INTEGER NOT NULL AUTO_INCREMENT, "+
+					        	"quoteId INTEGER NOT NULL, "+
+					        	"email VARCHAR(50) NOT NULL, "+
+					        	"price DOUBLE NOT NULL, "+
+					        	"note VARCHAR(255), "+
+					        	"status VARCHAR(8) NOT NULL DEFAULT 'open', "+
+					        	"CHECK (status in ('open', 'accepted', 'rejected')), "+
+					        	"PRIMARY KEY(billId), "+
+					        	"FOREIGN KEY (quoteId) REFERENCES Quote(quoteId) "+");"),
+					        
+					        "drop table if exists BillHistory; ",
+					        ("CREATE TABLE if not exists BillHistory( " +
+					        	"time DATETIME NOT NULL, "+
+					        	"billId INTEGER NOT NULL, "+
+					        	"quoteId INTEGER NOT NULL, "+
+					        	"email VARCHAR(50) NOT NULL, "+
+					        	"price DOUBLE NOT NULL, "+
+					        	"note VARCHAR(255), "+
+					        	"status VARCHAR(8) NOT NULL DEFAULT 'open', "+
+					        	"CHECK (status in ('open', 'accepted', 'rejected')), "+
+					        	"PRIMARY KEY(time, billId), "+
+					        	"FOREIGN KEY (email) REFERENCES User(email), "+
+					        	"FOREIGN KEY (billId) REFERENCES Bill(billId), "+
+					        	"FOREIGN KEY (quoteId) REFERENCES Quote(quoteId) "+");"),
+					        
+					        "drop table if exists Tree; ",
+					        ("CREATE TABLE if not exists tree( " +
+					        	"treeId INTEGER NOT NULL AUTO_INCREMENT, "+
+					        	"quoteId INTEGER NOT NULL, "+
+					        	"size DOUBLE NOT NULL, "+
+					        	"height DOUBLE NOT NULL, "+
+					        	"distance DOUBLE NOT NULL, "+
+					        	"PRIMARY KEY(treeId), "+
+					        	"FOREIGN KEY (quoteId) REFERENCES Quote(quoteId) "+");"),
+					        
+        					};
+
         
-					    
-			};
-        
-        
-        
-        
-        
-        String[] TUPLES = {("insert into User(id, email, firstName, lastName, password, creditCardNumber, phoneNumber, role, adress_street_num, adress_street, adress_city, adress_state, adress_zip_code , tree_num, tree_size, tree_height, tree_distance, tree_location)"+
-        			"values (id,'root', 'default', 'default','pass1234', '0000-0000-0000-0000','000-000-0000', 'root', '0000', 'Default', 'Default', '0', '00000' , '0', '0', '0', '0', '0'),"+
-        					"(id,'DavidSmith@gmail.com', 'David', 'Smith','david1234', '0000-0000-0000-0000','000-000-0000', 'David Smith', '0000', 'Default', 'Default', '0', '00000', '0', '0', '0', '0', '0')," +
-			    		 	"(id,'don@gmail.com', 'Don', 'Cummings','don1234', '8888-1111-2222-3333','313-388-0468', 'Client', '1000', 'hi street', 'mama', 'MO', '12345', '0', '0', '0', '0', '0'),"+
-			    	 	 	"(id,'margarita@gmail.com', 'Margarita', 'Lawson','margarita1234', '8888-1111-2222-3333','313-388-0468', 'Client', '1234', 'ivan street', 'tata','CO','12561', '0', '0', '0', '0', '0'),"+
-			    		 	"(id,'jo@gmail.com', 'Jo', 'Brady','jo1234', '8888-1111-2222-3333','313-388-0468', 'Client', '3214','marko street', 'brat', 'DU', '54321', '0', '0', '0', '0', '0'),"+
-			    		 	"(id,'wallace@gmail.com', 'Wallace', 'Moore','wallace1234', '8888-1111-2222-3333','313-388-0468', 'Client', '4500', 'frey street', 'sestra', 'MI', '48202', '0', '0', '0', '0', '0'),"+
-			    		 	"(id,'amelia@gmail.com', 'Amelia', 'Phillips','amelia1234', '8888-1111-2222-3333','313-388-0468', 'Client', '1245', 'm8s street', 'baka', 'IL', '48000', '0', '0', '0', '0', '0'),"+
-			    			"(id,'sophie@gmail.com', 'Sophie', 'Pierce','sophie1234', '8888-1111-2222-3333','313-388-0468', 'Client', '2468', 'yolos street', 'ides', 'CM', '24680', '0', '0', '0', '0', '0'),"+
-			    			"(id,'angelo@gmail.com', 'Angelo', 'Francis','angelo1234', '8888-1111-2222-3333','313-388-0468', 'Client', '4680', 'egypt street', 'lolas', 'DT', '13579', '0', '0', '0', '0', '0'),"+
-			    			"(id,'rudy@gmail.com', 'Rudy', 'Smith','rudy1234', '8888-1111-2222-3333','313-388-0468', 'Client', '1234', 'sign street', 'samo ne tu','MH', '09876', '0', '0', '0', '0', '0'),"+
-			    			"(id,'jeannette@gmail.com', 'Jeannette ', 'Stone','jeannette1234', '8888-1111-2222-3333','313-388-0468', 'Client', '0981', 'snoop street', 'kojik', 'HW', '87654', '0', '0', '0', '0', '0'),"+
-			    			"(id,'susie@gmail.com', 'Susie ', 'Guzman', 'susie1234', '8888-1111-2222-3333','313-388-0468', 'Client', '1234', 'whatever street', 'detroit', 'MI', '48202', '0', '0', '0', '0', '0');")
+        String[] TUPLES = {
+        		
+        					("insert into User(role, email, firstName, lastName, adress_street_num, adress_street, adress_city, adress_state, adress_zip_code, creditCard, phoneNumber, password)"+
+        			 "values ('david', 'davidsmith@treecutters.com', 'David', 'Smith', '1234', 'main st', 'Detroit', 'MI', '48202', '378282246310005', '3130233245', 'david1234'), "+
+        					"('client', 'tatum@gmail.com', 'Tatum', 'Brandt', '2341', 'elm st', 'Detroit', 'MI', '48201', '312382246310005', '3120433265', 'tatum1234'), "+
+        					"('client', 'alvaro@gmail.com', 'Alvaro', 'Oliver', '9982', 'west rd', 'Dearborn', 'MI', '48301', '234382246399805', '3764533265', 'alvaro1234'), "+
+        					"('client', 'stella@gmail.com', 'Stella', 'Marquez', '7485', 'oak ave', 'Detroit', 'MI', '48202', '712987246310325', '1320439295', 'stella1234'), "+
+        					"('client', 'ray@gmail.com', 'Ray', 'Gonzalez', '2783', 'ridge rd', 'Novi', 'MI', '49810', '612399846310305', '3920453263', 'ray1234'), "+
+        					"('client', 'andi@gmail.com', 'Andi', 'Carson', '8349', 'ford rd', 'Detroit', 'MI', '48203', '712389946410005', '2324439265', 'andi1234'), "+
+        					"('client', 'reid@gmail.com', 'Reid', 'Stone', '7485', 'noth ave', 'Detroit', 'MI', '48202', '417882988940005', '7344598260', 'reid1234'), "+
+        					"('client', 'margo@gmail.com', 'Margo', 'Dunn', '8923', 'main rd', 'Troy', 'MI', '48222', '389382987990305', '7345533005', 'margo1234'), "+
+        			 		"('client', 'sonny@gmail.com', 'Sonny', 'Vu', '5876', 'south st', 'Troy', 'MI', '48222', '312382987310005', '7134533265', 'sonny1234'), "+
+        					"('root', 'root', 'default', 'default', '0000', 'default', 'default', '00', '00000', '000000000000000', '0000000000', 'pass1234'); "),
+        					
+        					("insert into Quote(time, clientEmail, price, timeFrame, note, status, current)"+
+        			 "values ('2023-09-12 08:03:03', 'tatum@gmail.com', 300, 'monday', 'abc', 'open', 'tatum@gmail.com'),"+
+        					"('2023-09-29 08:03:03', 'alvaro@gmail.com', 400, 'tuesday and thursday', 'def', 'accepted', 'alvaro@gmail.com'),"+
+        					"('2023-09-16 08:03:03', 'stella@gmail.com', 200, 'friday', 'ghi', 'rejected', 'stella@gmail.com'),"+
+        					"('2023-09-22 08:03:03', 'stella@gmail.com', 200, 'tuesday', 'jkl', 'open', 'davidsmith@treecutters.com'),"+
+        					"('2023-08-21 08:03:03', 'andi@gmail.com', 400, 'thursday and friday', 'mno', 'rejected', 'andi@gmail.com'),"+
+        					"('2023-07-19 08:03:03', 'reid@gmail.com', 300, 'tuesday', 'pqr', 'open', 'reid@gmail.com'),"+
+        					"('2023-07-29 08:03:03', 'andi@gmail.com', 400, 'monday', 'stu', 'rejected', 'davidsmith@treecutters.com'),"+
+        					"('2023-09-29 08:03:03', 'alvaro@gmail.com', 200, 'monday', 'vwx', 'open', 'davidsmith@treecutters.com'),"+
+        					"('2023-08-29 08:03:03', 'sonny@gmail.com', 300, 'tuesday', 'yza', 'accepted', 'davidsmith@treecutters.com'),"+
+        					"('2023-08-19 08:03:03', 'sonny@gmail.com', 600, 'tuesday and wednesday', 'yza', 'accepted', 'sonny@gmail.com'),"+
+        					"('2023-09-32 08:03:03', 'margo@gmail.com', 300, 'tuesday', 'yza', 'accepted', 'margo@gmail.com'),"+
+        					"('2023-07-31 08:03:03', 'ray@gmail.com', 200, 'wednesday', 'yza', 'accepted', 'davidsmith@treecutters.com'),"+
+        					"('2023-09-19 08:03:03', 'alvaro@gmail.com', 250, 'thursday', 'def', 'accepted', 'alvaro@gmail.com'),"+
+        					"('2023-08-29 08:03:03', 'tatum@gmail.com', 250, 'friday', 'def', 'accepted', 'tatum@gmail.com'),"+
+        					"('2023-09-12 08:03:03', 'andi@gmail.com', 200, 'friday', 'bcd', 'accepted', 'davidsmith@treecutters.com');"),
+        					
+        					("insert into QuoteHistory(time, quoteId, email, price, timeFrame, note, status)"+
+        			 "values ('2023-09-29 08:03:03', 1,'davidsmith@treecutters.com', 400, 'monday', 'abc', 'open'),"+
+        					"('2023-09-30 09:25:00', 1,'tatum@gmail.com', 300, 'tuesday', 'def', 'open'),"+
+        					"('2023-10-02 02:32:21', 1,'davidsmith@treecutters.com', 350, 'tuesday', 'ghi', 'open'),"+
+        					
+        					"('2023-10-05 12:53:12', 2,'davidsmith@treecutters.com', 400, 'thursday and friday', 'mno', 'open'),"+
+        					"('2023-10-07 09:43:12', 2,'alvaro@gmail.com', 400, 'thursday and friday', 'pqr', 'accepted'),"+
+        					
+        					"('2023-10-12 12:56:23', 3,'davidsmith@treecutters.com', 400, 'monday', 'stu', 'open'),"+
+        					"('2023-10-12 15:23:43', 3,'stella@gmail.com', 200, 'monday', 'vwx', 'open'),"+
+        					"('2023-10-14 09:45:45', 3,'davidsmith@treecutters.com', 400, 'monday', 'yza', 'open'),"+
+        					"('2023-10-17 07:29:20', 3,'stella@gmail.com', 400, 'tuesday and monday', 'yza', 'rejected'),"+
+        					
+        					"('2023-10-18 18:43:34', 4,'davidsmith@treecutters.com', 400, 'tuesday', 'yza', 'open'),"+
+        					"('2023-10-19 16:33:03', 4,'stella@gmail.com', 300, 'wednesday', 'yza', 'open'),"+
+        					
+        					"('2023-10-23 04:52:12', 5,'davidsmith@treecutters.com', 500, 'thursday', 'def', 'open'),"+
+        					"('2023-10-24 09:09:23', 5,'andi@gmail.com', 300, 'friday', 'def', 'open'),"+
+        					"('2023-10-24 10:23:17', 5,'davidsmith@treecutters.com', 450, 'friday', 'def', 'open'),"+
+        					"('2023-10-26 12:12:12', 5,'andi@gmail.com', 450, 'friday', 'bcd', 'rejected');"),
+
+        					("insert into Bill(quoteId, email, price, note, status)"+
+					 "values (1, 'tatum@gmail.com', 300, 'abc', 'accepted'),"+
+							"(2, 'alvaro@gmail.com', 400, 'def', 'accepted'),"+
+							"(6, 'reid@gmail.com', 300, 'pqr', 'open'),"+
+							"(9, 'sonny@gmail.com', 300, 'yza', 'accepted'),"+
+							"(15, 'andi@gmail.com', 200, 'bcd', 'rejected'),"+
+							"(10, 'sonny@gmail.com', 600, 'yza', 'accepted'),"+
+							"(11, 'margo@gmail.com', 300, 'yza', 'rejected'),"+
+							"(12, 'ray@gmail.com', 200, 'yza', 'accepted'),"+
+							"(13, 'alvaro@gmail.com', 250, 'def', 'open'),"+
+							"(14, 'tatum@gmail.com', 250, 'def', 'accepted');"),        					
+
+        					("insert into BillHistory(time, billId, quoteId, email, price, note, status)"+
+        			 "values ('2023-10-04 08:03:03', 1, 1,'davidsmith@treecutters.com', 400, 'abc', 'open'),"+
+        					"('2023-10-05 09:25:00', 1, 1,'tatum@gmail.com', 300, 'def', 'open'),"+
+        					"('2023-10-06 02:32:21', 1, 1,'davidsmith@treecutters.com', 350, 'ghi', 'open'),"+
+        					"('2023-10-06 18:54:45', 1, 1,'tatum@gmail.com', 350, 'jkl', 'accepted'),"+
+        					
+        					"('2023-10-08 12:53:12', 2, 2,'davidsmith@treecutters.com', 400, 'mno', 'open'),"+
+        					"('2023-10-09 09:43:12', 2, 2,'alvaro@gmail.com', 400, 'pqr', 'accepted'),"+
+        					
+        					"('2023-10-18 12:56:23', 3, 6,'davidsmith@treecutters.com', 400, 'stu', 'open'),"+
+        					"('2023-10-18 15:23:43', 3, 6,'reid@gmail.com', 200, 'vwx', 'open'),"+
+        					"('2023-10-19 09:45:45', 3, 6,'davidsmith@treecutters.com', 400, 'yza', 'open'),"+
+        					"('2023-10-20 07:29:20', 3, 6,'reid@gmail.com', 350, 'yza', 'open'),"+
+        					
+        					"('2023-10-20 18:43:34', 4, 9,'davidsmith@treecutters.com', 400, 'yza', 'open'),"+
+        					"('2023-10-21 16:33:03', 4, 9,'sonny@gmail.com', 300, 'yza', 'accepted'),"+
+        					
+        					"('2023-10-26 12:52:12', 5, 15,'davidsmith@treecutters.com', 500, 'def', 'open'),"+
+        					"('2023-10-26 13:09:23', 5, 15,'andi@gmail.com', 300, 'def', 'open'),"+
+        					"('2023-10-26 13:23:17', 5, 15,'davidsmith@treecutters.com', 450, 'def', 'open'),"+
+        					"('2023-10-26 14:12:12', 5, 15,'andi@gmail.com', 450, 'bcd', 'rejected');"),      					
+        					
+        					("insert into Tree(quoteId, size, height, distance)"+
+        			 "values (1, 2, 5, 4), "+
+        					"(2, 3, 3, 7), "+
+        					"(3, 4, 4, 4), "+
+        					"(4, 5, 5, 2), "+
+        					"(5, 7, 8, 4), "+
+        					"(6, 2, 2, 7), "+
+        					"(7, 8, 3, 8), "+
+        					"(8, 3, 6, 3), "+
+        					"(9, 8, 9, 2), "+
+        					"(10, 9, 2, 8); ")
+        			
+        								 
 			    			};
         
         //for loop to put these in database
@@ -403,5 +707,15 @@ public class userDAO
         	statement.execute(TUPLES[i]);
         disconnect();
     }
-  
+    
+    
+   
+    
+    
+    
+    
+    
+	
+	
+
 }

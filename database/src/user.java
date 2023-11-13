@@ -1,24 +1,18 @@
 public class user 
 {
-		protected String id;
-		protected String password;
+		protected String role;
 	 	protected String email;
 	    protected String firstName;
 	    protected String lastName;
-	    protected String creditCardNumber;
-	    protected String phoneNumber;
-	    protected String role;
 	    protected String adress_street_num;
 	    protected String adress_street;
 	    protected String adress_city;
 	    protected String adress_state;
 	    protected String adress_zip_code;
-	    protected String tree_num;
-	    protected String tree_size;
-	    protected String tree_height;
-	    protected String tree_distance;
-	    protected String tree_location;
-
+	    protected String creditCard;
+	    protected String phoneNumber;
+	    protected String password;
+	 
 	    //constructors
 	    public user() {
 	    }
@@ -28,41 +22,34 @@ public class user
 	        this.email = email;
 	    }
 	    
-	    public user(String id, String email,String firstName, String lastName, String password,String creditCardNumber,String phoneNumber, String role, String adress_street_num, String adress_street, String adress_city, String adress_state,String adress_zip_code, String tree_num, String tree_size, String tree_height, String tree_distance, String tree_location) 
+	    public user(String role, String email,String firstName, String lastName, String adress_street_num, String adress_street, String adress_city, String adress_state,String adress_zip_code, String creditCard,  String phoneNumber, String password) 
 	    {
-	    	this(id, firstName,lastName,password,creditCardNumber,phoneNumber,role, adress_street_num,  adress_street,  adress_city,  adress_state,  adress_zip_code, tree_num, tree_size, tree_height, tree_distance, tree_location);
+	    	this(role, firstName,lastName, adress_street_num,  adress_street,  adress_city,  adress_state,  adress_zip_code, creditCard, phoneNumber, password);
 	    	this.email = email;
 	    }
 	 
 	
-	    public user(String id,String firstName, String lastName, String password,String creditCardNumber,String phoneNumber, String role, String adress_street_num, String adress_street, String adress_city, String adress_state,String adress_zip_code, String tree_num, String tree_size, String tree_height, String tree_distance, String tree_location) 
+	    public user(String role, String firstName, String lastName, String adress_street_num, String adress_street, String adress_city, String adress_state,String adress_zip_code, String creditCard,  String phoneNumber, String password) 
 	    {
-	    	this.id = id;
+	    	this.role = role;
 	    	this.firstName = firstName;
 	    	this.lastName = lastName;
-	    	this.password = password;
-	    	this.creditCardNumber = creditCardNumber;
-	        this.phoneNumber = phoneNumber;
-	        this.role = role;
 	        this.adress_street_num = adress_street_num;
 	        this.adress_street = adress_street;
 	        this.adress_city= adress_city;
 	        this.adress_state = adress_state;
 	        this.adress_zip_code = adress_zip_code;
-	        this.tree_num = tree_num;
-	        this.tree_size = tree_size;
-	        this.tree_height = tree_height;
-	        this.tree_distance = tree_distance;
-	        this.tree_location = tree_location;
+	        this.creditCard = creditCard;
+	        this.phoneNumber = phoneNumber;
+	        this.password = password;
 	    }
 	    
-	   //getter and setter methods 
-	    
-	    public String getId() {
-	        return id;
+	   //getter and setter methods
+	    public String getRole() {
+	        return role;
 	    }
-	    public void setId(String id) {
-	        this.id = id;
+	    public void setRole(String role) {
+	        this.role = role;
 	    }
 	    
 	    public String getEmail() {
@@ -86,31 +73,6 @@ public class user
 	        this.lastName = lastName;
 	    }
 	    
-	    public String getPassword() {
-	        return password;
-	    }
-	    public void setPassword(String password) {
-	        this.password = password;
-	    }
-	  
-	    public String getCreditCardNumber() {
-	    	return creditCardNumber;
-	    }
-	    public void setCreditCardNumber(String creditCardNumber) {
-	    	this.creditCardNumber = creditCardNumber;
-	    }
-	    public String getPhoneNumber() {
-	    	return phoneNumber;
-	    }
-	    public void setPhoneNumber(String phoneNumber) {
-	    	this.phoneNumber = phoneNumber;
-	    }
-	    public String getRole() {
-	    	return role;
-	    }
-	    public void setRole(String role) {
-	    	this.role = role;
-	    }
 	    public String getAdress_street_num() {
 	        return adress_street_num;
 	    }
@@ -142,35 +104,24 @@ public class user
 	        this.adress_zip_code = adress_zip_code;
 	    }
 	    
-	    public String getTree_Num() {
-	        return tree_num;
+	    public String getCreditCard() {
+	    	return creditCard;
 	    }
-	    public void setTree_Num(String tree_num) {
-	        this.tree_num = tree_num;
+	    public void setCreditCard(String creditCard) {
+	    	this.creditCard = creditCard;
 	    }
-	    public String getTree_Size() {
-	        return tree_size;
+	    
+	    public String getPhoneNumber() {
+	    	return phoneNumber;
 	    }
-	    public void setTree_Size(String tree_size) {
-	        this.tree_size = tree_size;
+	    public void setPhoneNumber(String phoneNumber) {
+	    	this.phoneNumber = phoneNumber;
 	    }
-	    public String getTree_Height() {
-	        return tree_height;
+	    
+	    public String getPassword() {
+	        return password;
 	    }
-	    public void setTree_Height(String tree_height) {
-	        this.tree_height = tree_height;
+	    public void setPassword(String password) {
+	        this.password = password;
 	    }
-	    public String getTree_Distance() {
-	        return tree_distance;
-	    }
-	    public void setTree_Distance(String tree_distance) {
-	        this.tree_distance = tree_distance;
-	    }
-	    public String getTree_Location() {
-	        return tree_location;
-	    }
-	    public void setTree_Location(String tree_location) {
-	        this.tree_location = tree_location;
-	    }
-	   
 	}
