@@ -78,4 +78,4 @@ Give credit to any external resources or libraries used in the project.
 ## Contact Information
 
 - Jacob - [GitHub Profile](https://github.com/jrule5960)
-- Karim - [GitHub Profile]
+- Karim - [GitHub Profile](https://github.com/karimsoliman21)
