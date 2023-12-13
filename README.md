@@ -64,10 +64,9 @@ Before using this project, make sure you have the following software installed:
   - Did a lot of the backend coding with the tables so that everything was connected.
   - Styling the website
   - Coming up with the classes for the tables.
-  - ### Part 2: Combined Hours of Work -12 hours
-
 
 ### Part 3: Combined Hours of Work -10 hours
+
 - **Jacob:**
   - Created the web interfaces for each statement.
   - Helped with select statements. 
