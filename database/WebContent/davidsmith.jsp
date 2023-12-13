@@ -8,7 +8,7 @@
     <title>Activity Page</title>
     <style>
         body {
-            background-color: #ADD8E6;
+            background-color: grey;
             color: #333;
             font-family: Arial, sans-serif; 
         }
@@ -50,12 +50,17 @@
   <h1>Welcome, David Smith</h1>
         
     
-    <form action="viewQuotes">
     <center>
-        <a href="login.jsp" target="_self">Logout</a><br><br>
+    <a href="login.jsp" target="_self">Logout</a><br><br>
+    
+    <form action="viewQuotes">
         <input type="submit" value="View Quotes" class="view-qutoes"/><br><br>
-    </center>
     </form>
+    
+    <form action="viewBills">
+        <input type="submit" value="View Bills" class="view-bills"/><br><br>
+    </form>
+    </center>
 </div>
 </body>
 </html>
