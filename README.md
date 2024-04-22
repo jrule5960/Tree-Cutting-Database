@@ -14,7 +14,7 @@ A collaborative project by Jacob and Karim
 
 ## About the Project
 
-"Everything" is a web project that integrates Eclipse, Apache Tomcat, and a database for a comprehensive development experience.
+This is a web project that integrates Eclipse, Apache Tomcat, and a database for a comprehensive development experience. In this Tree Cutting Database there is a contractor, clients, and admin. The users are able to register as a client and make a tree request for the contractor to view. The client will make a request of the tree or trees that they want cut down then the contractor will get a request and will then send a quote back to the client. Once there is a quote that is agreed between the two then it will be accepted and the tree request will be shown as "accepted". 
 
 ## Getting Started
 
